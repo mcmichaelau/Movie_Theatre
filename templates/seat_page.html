@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Theatre Seat Reservation</title>
+</head>
+<body>
+    <h1>Movie Theatre Seat Reservation</h1>
+    <form method="post" action="{{url_for('reserve')}}">
+        <label for="seat">Select a seat:</label>
+        <select name="seat" id="seat">
+            {% for seat, reserved in seats.items() %}
+                {% if reserved %}
+                    <option value="{{seat}}" disabled>{{seat}} (reserved)</option>
+                {% else %}
+                    <option value="{{seat}}">{{seat}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <input type="submit" value="Reserve Seat">
+    </form>
+    {% if message %}
+        <p>{{message}}</p>
+    {% endif %}
+</body>
+</html>
